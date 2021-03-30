@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    font-family: 'Roboto', 'sans-serif';
+    line-height:1.5;
+}
+/*// Variables //*/
+$borderRadius:20px;
+
+/*// Mixins //*/
+@mixin flexAlign(){
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+body {
+    padding:0;
+    margin:0;
+}
+
+section {
+    padding: 60px 0px;
+}
+
+.testimonial {
+    background:#c3cfe2;
+    height:auto;
+    @include flexAlign();
+
+    h1 {
+        font-size:30px;
+        text-align:center;
+    }
+}
+
+
+/*// Testimonial //*/
+.card {
+    width:300px;
+    height:auto;
+    margin:0 auto;
+    padding:40px;
+    border-radius:20px;
+    -webkit-box-shadow: 0px 10px 62px -14px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 10px 62px -14px rgba(0,0,0,0.58);
+    box-shadow: 0px 10px 62px -14px rgba(0,0,0,0.58);
+    color:olivegreen;
+
+    background:#c3cfe2;
+    background: linear-gradient(0deg, #686de0 0%, #686de0 35%, rgb(255, 255, 255) 35%, rgb(255, 255, 255) 100%);
+    &__card-text {
+        opacity:0.8;
+        font-weight:500;
+        font-size:18px;
+    }
+
+    &__card-bottom-content {
+        position: relative;
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+        box-sizing:border-box;
+        width:100%;
+        color:white;
+        padding-top:20px;
+
+        img {
+            border:5px solid white;
+            border-radius:100px;
+        }
+
+        .card__card-name {
+            font-weight:600;
+            font-size:20px;
+            text-transform: uppercase;
+            line-height:1;
+            letter-spacing: 2px;
+            margin:20px;        
+        }
+
+        .card__card-url {
+            font-size:20px;
+            opacity:0.5;
+        }
+    }
+}
+
+/*// Portfolio Grid //*/
+.portfolio-grid {
+    @include flexAlign();
+    background:#c3cfe2;
+    height:auto;
+
+    h1 {
+        font-size:30px;
+        text-align:center;
+    }
+
+    .grid {
+        display:grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        grid-gap: 10px;
+
+        div {
+            position:relative;
+            border-radius: $borderRadius;
+        }
+
+        div:hover .grid__item-overlay{
+            opacity:1;
+        }
+
+        .grid__item-overlay {
+            position: absolute;
+            @include flexAlign();
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #00000090;
+        }
+
+        .grid__item-overlay button {
+            color:#fff;
+            background:none;
+            font-size: 20px;
+            border:2px solid white;
+        }
+
+        img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        
+
+    }
+
+
+    @media screen and (min-width:600px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (min-width:1024px) {
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+    }
+}
+
+/*// Sticky social media buttons //*/
+
+$button-height: 50px;
+$box-width: 300px;
+$box-height: 212px;
+
+.share-buttons {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    width:50px;
+    top: 50%;
+    right: 0;
+  
+  .share-button {
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:after {
+      clear: both;
+      display: table;
+    }
+  }
+}
+
+.share-button {
+  display: block;
+  position: relative;
+  height: $button-height;
+  
+  &:hover {
+    cursor: pointer;
+    
+    .share-button-primary {
+      box-shadow: 1px 0 0 0 rgba(0, 0, 0, .1);
+    //   margin-left: -250px;
+      z-index: 999;
+      
+    }
+    
+    .share-button-secondary-content {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.share-button-primary {
+    width: $button-height;
+    height: $button-height;
+    left: 0;
+    top: 50%;
+    margin-top: -50px;
+
+    &.facebook {
+        background-color: #3b5998;
+        
+    }
+
+    &.twitter {
+        background-color: #00aced;
+    }
+
+    &.github {
+        background-color: #333;
+    }
+
+    &.linkedin {
+        background-color: #007bb6;
+    }
+
+    &.youtube {
+        background-color: #e17b77;
+    }
+}
+
+.share-button-icon {
+  color: #fff;
+  width: $button-height;
+  line-height: $button-height;
+  padding: 17px
+}
+
+.share-button-secondary {
+  overflow: hidden;
+  margin-left: -200px;
+  height: $button-height;
+}
+
+.share-button-secondary-content {
+  font-family: sans-serif;
+  font-size: .75em;
+  background: #fff;
+  display: block;
+  height: $button-height;
+  text-align: left;
+  padding-left: ($button-height * .8);
+  padding-right: ($button-height * .6);
+  line-height: $button-height;
+  color: #fff;
+  transform: translate3d(100%, 0, 0);
+  transition: transform 175ms ease;
+
+    &.facebook {
+        background-color: #3b5998;
+    }
+
+    &.twitter {
+        background-color: #00aced;
+    }
+
+    &.github {
+        background-color: #333;
+    }
+
+    &.linkedin {
+        background-color: #007bb6;
+    }
+
+    &.youtube {
+        background-color: #e17b77;
+    }
+}
